@@ -182,17 +182,17 @@ a{
 		<div class="white-panel">
 			<div class="login-show">
 				<h2>LOGIN</h2>
-				<input type="text" placeholder="Email">
-				<input type="password" placeholder="Password">
-				<input type="button" value="Login">
+				<input id="login_email" type="text" placeholder="Email">
+				<input id="login_password" type="password" placeholder="Password">
+				<input type="button" value="Login" onclick="login()">
 				<a href="">Forgot password?</a>
 			</div>
 			<div class="register-show">
 				<h2>REGISTER</h2>
-				<input type="text" placeholder="Email">
-				<input type="password" placeholder="Password">
-				<input type="password" placeholder="Confirm Password">
-				<input type="button" value="Register">
+				<input id="email" type="text" placeholder="Email">
+				<input id="pass" type="password" placeholder="Password">
+				<input id="confirm" type="password" placeholder="Confirm Password">
+				<input type="button" value="Register" onclick = "validate()">
 			</div>
 		</div>
 	</div>
@@ -224,9 +224,56 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
     }
 });
 
+function login() {
+    var login_email = $('#login_email').val();
+    var login_pass = $('#login_password').val();
 
+    if(login_email == "mohdumarusmani99@gmail.com" && login_pass == "123456789") {
+        alert("Login successfull");
+    } else {
+        alert("Login fail");
+    }
+}
 
-    
+function validate() {
+	var email = $('#email').val();
+    var pass = $('#pass').val();
+    var confirm = $('#confirm').val();
+	if(ValidateEmail(email) && ValidatePassword(pass,confirm)) {
+		alert("User registered");
+	}
+}
+
+function ValidateEmail(email)  {
+console.log(email);
+
+if(email == "") {
+        alert("Field is empty");
+        return false;
+}
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid email address!")
+    return (false)
+}
+
+function ValidatePassword(pass,confirm) {
+    console.log(pass);
+    console.log(confirm);
+    if(pass = "" || confirm == "") {
+        alert("Field is empty");
+        return false;
+    }
+
+    if(pass == confirm) {
+        return true;
+    } else {
+        alert("Password does not match");
+        return false;
+    }
+}    
     
 </script>
 </body>
